@@ -96,6 +96,7 @@ h1{
 .tipo.t-trans{background:var(--blue);}
 .tipo.t-ciclo{background:var(--red);}
 .tipo.t-camp{background:var(--green);}
+.tipo.t-visual{background:#8A4B7D;}
 h2{margin:0; font-size:26px; line-height:1.2; font-weight:600; letter-spacing:-.015em;}
 .specimen-cab p{margin:0; color:var(--ink-soft); font-size:15.5px;}
 
@@ -186,11 +187,11 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
 
   <header class="intro">
     <p class="eyebrow">Muestra de trabajo · Benjamín Vásquez Aguiló</p>
-    <h1>Tres correos escritos para sobrevivir a cualquier bandeja</h1>
+    <h1>Cinco correos escritos para sobrevivir a cualquier bandeja</h1>
     <p class="lede">
       Un correo no se maqueta como una página. Outlook para Windows lo dibuja con el motor de Word,
       Gmail borra la etiqueta <code style="font-family:var(--mono);font-size:14px;">&lt;style&gt;</code> en varios
-      contextos y una parte de los lectores bloquea las imágenes antes de que las veas. Estas tres plantillas
+      contextos y una parte de los lectores bloquea las imágenes antes de que las veas. Estas cinco plantillas
       están construidas contra ese terreno, no contra un navegador.
     </p>
     <p class="meta">
@@ -1023,6 +1024,648 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
     </details>
   </section>
 
+  <!-- ============ 4 ============ -->
+  <section class="specimen">
+    <div class="specimen-cab">
+      <span class="tipo t-visual">Pieza visual</span>
+      <h2>Hero con imagen de fondo y texto encima</h2>
+      <p>
+        La pieza que todo cliente pide y que rompe en Outlook. Una imagen de fondo con el titular y el
+        botón sobre ella, resuelta en tres capas para que cada bandeja tome la que entiende — y con un
+        color sólido detrás para que el texto siga siendo legible cuando la imagen no carga.
+      </p>
+    </div>
+
+    <div class="banco">
+      <div class="visor">
+        <div class="visor-barra">
+          <span class="anchura" data-anchura>600 px · escritorio</span>
+          <div class="tabs" role="tablist" aria-label="Ancho de previsualización">
+            <button role="tab" aria-selected="true" data-vista="escritorio">Escritorio</button>
+            <button role="tab" aria-selected="false" data-vista="movil">Móvil</button>
+          </div>
+        </div>
+        <div class="escenario" data-escenario>
+          <iframe title="Vista previa: hero con imagen de fondo" data-marco="4"></iframe>
+        </div>
+      </div>
+
+      <div class="notas">
+        <h3>Decisiones técnicas</h3>
+        <ul class="decisiones">
+          <li>
+            <b>Fondo declarado en tres capas</b>
+            <span>El atributo <code>background=</code> para clientes antiguos, <code>background-image</code> en el
+            <code>style</code> para los modernos, y un <code>v:rect</code> con <code>v:fill type="frame"</code> y
+            <code>v:textbox</code> para Outlook, que no entiende ninguna de las dos primeras.</span>
+          </li>
+          <li>
+            <b>Color de respaldo bajo la imagen</b>
+            <span>El <code>bgcolor</code> del hero es un azul oscuro cercano al de la foto. Con las imágenes
+            bloqueadas el titular blanco sigue teniendo contraste, en vez de quedar blanco sobre blanco: es el
+            error más común de este patrón.</span>
+          </li>
+          <li>
+            <b>Altura fija sólo para Outlook</b>
+            <span>El <code>v:rect</code> necesita alto en píxeles, así que se fija en 320. En el resto de los
+            clientes la altura la da el contenido, y en móvil la media query la libera para que el texto no se corte.</span>
+          </li>
+          <li>
+            <b>Botón blanco sobre foto</b>
+            <span>Sobre una imagen no se puede confiar en el contraste de un botón de color: el relleno blanco
+            sólido funciona sobre cualquier zona de la foto, y también sobre el color de respaldo.</span>
+          </li>
+          <li>
+            <b>Imágenes al doble de resolución</b>
+            <span>La foto mide 1200&nbsp;px y se muestra a 600. En pantallas retina se ve nítida, y el peso se
+            controla con compresión, no con tamaño: 47&nbsp;KB para el hero completo.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="codigo">
+      <summary>Ver el código completo</summary>
+      <pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; lang=&quot;es&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+&lt;meta name=&quot;color-scheme&quot; content=&quot;light dark&quot; /&gt;
+&lt;meta name=&quot;supported-color-schemes&quot; content=&quot;light dark&quot; /&gt;
+&lt;title&gt;Temporada Patagonia · cupos abiertos&lt;/title&gt;
+&lt;!--[if mso]&gt;
+&lt;noscript&gt;
+  &lt;xml&gt;
+    &lt;o:OfficeDocumentSettings&gt;
+      &lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;
+    &lt;/o:OfficeDocumentSettings&gt;
+  &lt;/xml&gt;
+&lt;/noscript&gt;
+&lt;![endif]--&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+  body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  img { -ms-interpolation-mode:bicubic; border:0; height:auto; line-height:100%; outline:none; text-decoration:none; display:block; }
+  table { border-collapse:collapse !important; }
+  body { height:100% !important; margin:0 !important; padding:0 !important; width:100% !important; }
+  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; font-size:inherit !important; font-family:inherit !important; font-weight:inherit !important; line-height:inherit !important; }
+
+  /* Texto alternativo con estilo: si la imagen no carga, el alt se ve deliberado
+     y no como texto azul sin formato de 12px. */
+  img.alt-cuidado { color:#FFFFFF; font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:20px; text-align:center; }
+
+  @media screen and (max-width:600px) {
+    .contenedor { width:100% !important; }
+    .pad-lateral { padding-left:20px !important; padding-right:20px !important; }
+    .hero-alto { height:auto !important; }
+    .hero-pad { padding:32px 20px !important; }
+    .h1-movil { font-size:27px !important; line-height:33px !important; }
+    .apila { display:block !important; width:100% !important; max-width:100% !important; }
+    .col-pad { padding-bottom:18px !important; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .fondo-pagina { background-color:#14161A !important; }
+    .fondo-tarjeta { background-color:#1C1F25 !important; }
+    .texto-principal { color:#E6E8EB !important; }
+    .texto-suave { color:#A8AEB8 !important; }
+    .borde { border-color:#2C313A !important; }
+    .logo-texto { color:#E6E8EB !important; }
+  }
+  [data-ogsc] .fondo-pagina { background-color:#14161A !important; }
+  [data-ogsc] .fondo-tarjeta { background-color:#1C1F25 !important; }
+  [data-ogsc] .texto-principal { color:#E6E8EB !important; }
+  [data-ogsc] .texto-suave { color:#A8AEB8 !important; }
+  [data-ogsc] .borde { border-color:#2C313A !important; }
+  [data-ogsc] .logo-texto { color:#E6E8EB !important; }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body class=&quot;fondo-pagina&quot; style=&quot;margin:0; padding:0; width:100%; background-color:#F2F3F5;&quot;&gt;
+
+&lt;div style=&quot;display:none; font-size:1px; color:#F2F3F5; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;&quot;&gt;
+  Abrimos las salidas de temporada a la Patagonia. Cupos por fecha, reserva con abono del 50%.
+  &amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;
+&lt;/div&gt;
+
+&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot; class=&quot;fondo-pagina&quot; style=&quot;background-color:#F2F3F5;&quot;&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;center&quot; style=&quot;padding:24px 12px;&quot;&gt;
+      &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;600&quot; class=&quot;contenedor&quot; style=&quot;width:600px; max-width:600px;&quot;&gt;
+
+        &lt;tr&gt;
+          &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:0 32px 20px 32px; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#16191F;&quot;&gt;
+            &lt;span class=&quot;logo-texto&quot;&gt;Rutas del Sur&lt;/span&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- ============================================================
+             HERO CON IMAGEN DE FONDO &quot;A PRUEBA DE BALAS&quot;
+             Tres capas para el mismo resultado:
+               1. atributo background=  → clientes antiguos
+               2. background-image en style= → clientes modernos
+               3. v:rect + v:fill + v:textbox → Outlook para Windows
+             bgcolor sostiene el contraste si la imagen no carga.
+             ============================================================ --&gt;
+        &lt;tr&gt;
+          &lt;td background=&quot;https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg&quot;
+              bgcolor=&quot;#1A2340&quot;
+              valign=&quot;top&quot;
+              class=&quot;hero-alto&quot;
+              style=&quot;background-color:#1A2340; background-image:url(&#x27;https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg&#x27;); background-position:center center; background-size:cover; background-repeat:no-repeat; border-radius:6px 6px 0 0;&quot;&gt;
+
+            &lt;!--[if gte mso 9]&gt;
+            &lt;v:rect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; fill=&quot;true&quot; stroke=&quot;false&quot; style=&quot;width:600px;height:320px;&quot;&gt;
+              &lt;v:fill type=&quot;frame&quot; src=&quot;https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg&quot; color=&quot;#1A2340&quot; /&gt;
+              &lt;v:textbox inset=&quot;0,0,0,0&quot;&gt;
+            &lt;![endif]--&gt;
+
+            &lt;div&gt;
+              &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
+                &lt;tr&gt;
+                  &lt;td class=&quot;hero-pad&quot; height=&quot;320&quot; valign=&quot;top&quot; style=&quot;height:320px; padding:40px 36px;&quot;&gt;
+                    &lt;p style=&quot;margin:0 0 10px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#C7CFE2;&quot;&gt;
+                      Temporada 2026 &amp;middot; Cupos abiertos
+                    &lt;/p&gt;
+                    &lt;h1 class=&quot;h1-movil&quot; style=&quot;margin:0 0 20px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:34px; line-height:40px; font-weight:700; color:#FFFFFF; max-width:380px;&quot;&gt;
+                      El sur, con las fechas ya cerradas
+                    &lt;/h1&gt;
+
+                    &lt;!--[if mso]&gt;
+                    &lt;v:roundrect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w=&quot;urn:schemas-microsoft-com:office:word&quot; href=&quot;https://ejemplo.cl/temporada&quot; style=&quot;height:46px;v-text-anchor:middle;width:218px;&quot; arcsize=&quot;9%&quot; stroke=&quot;f&quot; fillcolor=&quot;#FFFFFF&quot;&gt;
+                      &lt;w:anchorlock/&gt;
+                      &lt;center style=&quot;color:#16191F;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;&quot;&gt;Ver las salidas&lt;/center&gt;
+                    &lt;/v:roundrect&gt;
+                    &lt;![endif]--&gt;
+                    &lt;!--[if !mso]&gt;&lt;!-- --&gt;
+                    &lt;a href=&quot;https://ejemplo.cl/temporada&quot;
+                       style=&quot;background-color:#FFFFFF; border-radius:4px; color:#16191F; display:inline-block; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:46px; text-align:center; text-decoration:none; width:218px; -webkit-text-size-adjust:none;&quot;&gt;
+                      Ver las salidas
+                    &lt;/a&gt;
+                    &lt;!--&lt;![endif]--&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+
+            &lt;!--[if gte mso 9]&gt;
+              &lt;/v:textbox&gt;
+            &lt;/v:rect&gt;
+            &lt;![endif]--&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;!-- Cuerpo --&gt;
+        &lt;tr&gt;
+          &lt;td class=&quot;fondo-tarjeta borde&quot; style=&quot;background-color:#FFFFFF; border:1px solid #E1E4E8; border-top:0; border-radius:0 0 6px 6px;&quot;&gt;
+            &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
+
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:32px 32px 8px 32px;&quot;&gt;
+                  &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#4A5158;&quot;&gt;
+                    Cerramos el calendario de octubre a marzo: fechas fijas, grupos de doce personas como máximo y
+                    reserva con abono del 50%. Estas son las tres rutas que abrimos este año.
+                  &lt;/p&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;!-- Dos columnas con imagen, se apilan en móvil --&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:24px 32px 8px 32px;&quot; align=&quot;center&quot;&gt;
+                  &lt;!--[if mso]&gt;
+                  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;
+                  &lt;td width=&quot;50%&quot; valign=&quot;top&quot; style=&quot;padding-right:8px;&quot;&gt;
+                  &lt;![endif]--&gt;
+                  &lt;div class=&quot;apila col-pad&quot; style=&quot;display:inline-block; width:100%; max-width:260px; vertical-align:top;&quot;&gt;
+                    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
+                      &lt;tr&gt;
+                        &lt;td bgcolor=&quot;#2C3A5E&quot; style=&quot;background-color:#2C3A5E; border-radius:4px; line-height:0;&quot;&gt;
+                          &lt;a href=&quot;https://ejemplo.cl/paine&quot;&gt;
+                            &lt;img src=&quot;https://benjavsqz.github.io/portafolio-email/img/card-paine.jpg&quot;
+                                 width=&quot;260&quot; height=&quot;179&quot; alt=&quot;Cordón montañoso del Paine al amanecer&quot;
+                                 class=&quot;alt-cuidado&quot;
+                                 style=&quot;display:block; width:100%; max-width:260px; height:auto; border-radius:4px;&quot; /&gt;
+                          &lt;/a&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding-top:12px; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:600; color:#16191F;&quot; class=&quot;texto-principal&quot;&gt;
+                          Torres del Paine · 5 días
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding-top:3px; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;&quot; class=&quot;texto-suave&quot;&gt;
+                          Desde $289.000 · 4 salidas
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                    &lt;/table&gt;
+                  &lt;/div&gt;
+                  &lt;!--[if mso]&gt;
+                  &lt;/td&gt;&lt;td width=&quot;50%&quot; valign=&quot;top&quot; style=&quot;padding-left:8px;&quot;&gt;
+                  &lt;![endif]--&gt;
+                  &lt;div class=&quot;apila&quot; style=&quot;display:inline-block; width:100%; max-width:260px; vertical-align:top;&quot;&gt;
+                    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
+                      &lt;tr&gt;
+                        &lt;td bgcolor=&quot;#3A4E44&quot; style=&quot;background-color:#3A4E44; border-radius:4px; line-height:0;&quot;&gt;
+                          &lt;a href=&quot;https://ejemplo.cl/austral&quot;&gt;
+                            &lt;img src=&quot;https://benjavsqz.github.io/portafolio-email/img/card-austral.jpg&quot;
+                                 width=&quot;260&quot; height=&quot;179&quot; alt=&quot;Fiordo turquesa en la Carretera Austral&quot;
+                                 class=&quot;alt-cuidado&quot;
+                                 style=&quot;display:block; width:100%; max-width:260px; height:auto; border-radius:4px;&quot; /&gt;
+                          &lt;/a&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding-top:12px; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:600; color:#16191F;&quot; class=&quot;texto-principal&quot;&gt;
+                          Carretera Austral · 7 días
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding-top:3px; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;&quot; class=&quot;texto-suave&quot;&gt;
+                          Desde $410.000 · 3 salidas
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                    &lt;/table&gt;
+                  &lt;/div&gt;
+                  &lt;!--[if mso]&gt;
+                  &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+                  &lt;![endif]--&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:20px 32px 32px 32px;&quot;&gt;
+                  &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;&quot;&gt;
+                    Los cupos se liberan por orden de reserva.
+                    &lt;a href=&quot;https://ejemplo.cl/temporada&quot; style=&quot;color:#24408F; text-decoration:underline;&quot;&gt;Ver el calendario completo&lt;/a&gt;
+                  &lt;/p&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+            &lt;/table&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:24px 32px 8px 32px;&quot;&gt;
+            &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0 0 6px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;&quot;&gt;
+              Rutas del Sur SpA &amp;middot; Av. Ejemplo 1234, Santiago, Chile
+            &lt;/p&gt;
+            &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;&quot;&gt;
+              &lt;a href=&quot;https://ejemplo.cl/baja&quot; style=&quot;color:#667085; text-decoration:underline;&quot;&gt;Darse de baja&lt;/a&gt; &amp;middot;
+              &lt;a href=&quot;https://ejemplo.cl/preferencias&quot; style=&quot;color:#667085; text-decoration:underline;&quot;&gt;Preferencias de correo&lt;/a&gt;
+            &lt;/p&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+      &lt;/table&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </details>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section class="specimen">
+    <div class="specimen-cab">
+      <span class="tipo t-visual">Pieza visual</span>
+      <h2>Catálogo con fichas de producto</h2>
+      <p>
+        Portada a ancho completo, dos fichas en paralelo y una destacada con cinta de estado. Es el formato
+        donde más imágenes entran, y por lo tanto donde más hay que planificar qué pasa cuando ninguna carga.
+      </p>
+    </div>
+
+    <div class="banco">
+      <div class="visor">
+        <div class="visor-barra">
+          <span class="anchura" data-anchura>600 px · escritorio</span>
+          <div class="tabs" role="tablist" aria-label="Ancho de previsualización">
+            <button role="tab" aria-selected="true" data-vista="escritorio">Escritorio</button>
+            <button role="tab" aria-selected="false" data-vista="movil">Móvil</button>
+          </div>
+        </div>
+        <div class="escenario" data-escenario>
+          <iframe title="Vista previa: catálogo con fichas de producto" data-marco="5"></iframe>
+        </div>
+      </div>
+
+      <div class="notas">
+        <h3>Decisiones técnicas</h3>
+        <ul class="decisiones">
+          <li>
+            <b>Cada imagen sobre su propio color</b>
+            <span>La celda que contiene cada foto lleva un <code>bgcolor</code> tomado de la foto misma. Con las
+            imágenes bloqueadas el correo se ve como una composición de bloques de color, no como una lista de
+            recuadros vacíos.</span>
+          </li>
+          <li>
+            <b>Texto alternativo con estilo propio</b>
+            <span>La clase sobre el <code>&lt;img&gt;</code> define color, tipografía y alineación del
+            <code>alt</code>. Sin eso, el texto de respaldo aparece en azul de enlace a 12&nbsp;px y arruina la
+            composición justo cuando más importa.</span>
+          </li>
+          <li>
+            <b><code>display:block</code> y <code>line-height:0</code></b>
+            <span>Sin ambos, varios clientes dejan una franja de 3 a 5&nbsp;px bajo cada imagen — el espacio de la
+            línea base del texto. Es el defecto que delata un correo hecho a la rápida.</span>
+          </li>
+          <li>
+            <b>Ancho y alto en atributos, no sólo en CSS</b>
+            <span>Outlook ignora el <code>max-width</code> del CSS y usa los atributos <code>width</code> y
+            <code>height</code>. Van los dos: los atributos para Outlook, el <code>max-width:100%</code> para que
+            en móvil la imagen se achique en vez de desbordar.</span>
+          </li>
+          <li>
+            <b>La cinta de estado es una celda, no una imagen</b>
+            <span>«Últimos 3 cupos» es el dato que mueve la compra: se construye con color de fondo y texto para
+            que sea legible siempre, y para que la plataforma de envío pueda reemplazarlo por cliente.</span>
+          </li>
+          <li>
+            <b>Las fotos se enlazan enteras</b>
+            <span>Cada imagen va dentro de un <code>&lt;a&gt;</code>. En el teléfono la foto es el blanco de toque
+            más grande y natural de la ficha; dejarla sin enlace pierde la mayoría de los clics.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="codigo">
+      <summary>Ver el código completo</summary>
+      <pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; lang=&quot;es&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+&lt;meta name=&quot;color-scheme&quot; content=&quot;light dark&quot; /&gt;
+&lt;meta name=&quot;supported-color-schemes&quot; content=&quot;light dark&quot; /&gt;
+&lt;title&gt;Catálogo de salidas · Rutas del Sur&lt;/title&gt;
+&lt;!--[if mso]&gt;
+&lt;noscript&gt;
+  &lt;xml&gt;
+    &lt;o:OfficeDocumentSettings&gt;
+      &lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;
+    &lt;/o:OfficeDocumentSettings&gt;
+  &lt;/xml&gt;
+&lt;/noscript&gt;
+&lt;![endif]--&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+  body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  img { -ms-interpolation-mode:bicubic; border:0; height:auto; line-height:100%; outline:none; text-decoration:none; display:block; }
+  table { border-collapse:collapse !important; }
+  body { height:100% !important; margin:0 !important; padding:0 !important; width:100% !important; }
+  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; font-size:inherit !important; font-family:inherit !important; font-weight:inherit !important; line-height:inherit !important; }
+
+  img.alt-cuidado { color:#FFFFFF; font-family:Helvetica, Arial, sans-serif; font-size:13px; line-height:19px; text-align:center; }
+
+  @media screen and (max-width:600px) {
+    .contenedor { width:100% !important; }
+    .pad-lateral { padding-left:20px !important; padding-right:20px !important; }
+    .apila { display:block !important; width:100% !important; max-width:100% !important; }
+    .col-pad { padding-bottom:22px !important; }
+    .h1-movil { font-size:25px !important; line-height:31px !important; }
+    .cinta-movil { font-size:11px !important; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .fondo-pagina { background-color:#14161A !important; }
+    .fondo-tarjeta { background-color:#1C1F25 !important; }
+    .texto-principal { color:#E6E8EB !important; }
+    .texto-suave { color:#A8AEB8 !important; }
+    .borde { border-color:#2C313A !important; }
+    .logo-texto { color:#E6E8EB !important; }
+  }
+  [data-ogsc] .fondo-pagina { background-color:#14161A !important; }
+  [data-ogsc] .fondo-tarjeta { background-color:#1C1F25 !important; }
+  [data-ogsc] .texto-principal { color:#E6E8EB !important; }
+  [data-ogsc] .texto-suave { color:#A8AEB8 !important; }
+  [data-ogsc] .borde { border-color:#2C313A !important; }
+  [data-ogsc] .logo-texto { color:#E6E8EB !important; }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body class=&quot;fondo-pagina&quot; style=&quot;margin:0; padding:0; width:100%; background-color:#F2F3F5;&quot;&gt;
+
+&lt;div style=&quot;display:none; font-size:1px; color:#F2F3F5; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;&quot;&gt;
+  Tres rutas, doce salidas y los precios de temporada. Reserva con el 50% y paga el saldo 10 días antes.
+  &amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;&amp;#8203;
+&lt;/div&gt;
+
+&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot; class=&quot;fondo-pagina&quot; style=&quot;background-color:#F2F3F5;&quot;&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;center&quot; style=&quot;padding:24px 12px;&quot;&gt;
+      &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;600&quot; class=&quot;contenedor&quot; style=&quot;width:600px; max-width:600px;&quot;&gt;
+
+        &lt;tr&gt;
+          &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:0 32px 20px 32px; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#16191F;&quot;&gt;
+            &lt;span class=&quot;logo-texto&quot;&gt;Rutas del Sur&lt;/span&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td class=&quot;fondo-tarjeta borde&quot; style=&quot;background-color:#FFFFFF; border:1px solid #E1E4E8; border-radius:6px;&quot;&gt;
+            &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
+
+              &lt;!-- Imagen de portada a ancho completo. La celda lleva bgcolor:
+                   con la imagen bloqueada queda un bloque de color, no un hueco blanco. --&gt;
+              &lt;tr&gt;
+                &lt;td bgcolor=&quot;#1A2340&quot; style=&quot;background-color:#1A2340; line-height:0; border-radius:6px 6px 0 0;&quot;&gt;
+                  &lt;a href=&quot;https://ejemplo.cl/temporada&quot;&gt;
+                    &lt;img src=&quot;https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg&quot;
+                         width=&quot;600&quot; height=&quot;320&quot; alt=&quot;Atardecer sobre la cordillera patagónica&quot;
+                         class=&quot;alt-cuidado&quot;
+                         style=&quot;display:block; width:100%; max-width:600px; height:auto; border-radius:6px 6px 0 0;&quot; /&gt;
+                  &lt;/a&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:32px 32px 4px 32px;&quot;&gt;
+                  &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0 0 10px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#667085;&quot;&gt;
+                    Catálogo de temporada
+                  &lt;/p&gt;
+                  &lt;h1 class=&quot;texto-principal h1-movil&quot; style=&quot;margin:0 0 12px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:28px; line-height:34px; font-weight:700; color:#16191F;&quot;&gt;
+                    Doce salidas, tres rutas, cupos contados
+                  &lt;/h1&gt;
+                  &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#4A5158;&quot;&gt;
+                    Grupos de doce personas como máximo. Reservas con abono del 50% y saldo hasta diez días antes de la salida.
+                  &lt;/p&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;!-- Ficha destacada: imagen a un lado, datos al otro. Se apila en móvil. --&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:26px 32px 0 32px;&quot; align=&quot;center&quot;&gt;
+                  &lt;!--[if mso]&gt;
+                  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;
+                  &lt;td width=&quot;50%&quot; valign=&quot;top&quot; style=&quot;padding-right:9px;&quot;&gt;
+                  &lt;![endif]--&gt;
+                  &lt;div class=&quot;apila col-pad&quot; style=&quot;display:inline-block; width:100%; max-width:258px; vertical-align:top;&quot;&gt;
+                    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
+                      &lt;tr&gt;
+                        &lt;td bgcolor=&quot;#2C3A5E&quot; style=&quot;background-color:#2C3A5E; border-radius:4px; line-height:0;&quot;&gt;
+                          &lt;a href=&quot;https://ejemplo.cl/paine&quot;&gt;
+                            &lt;img src=&quot;https://benjavsqz.github.io/portafolio-email/img/card-paine.jpg&quot;
+                                 width=&quot;258&quot; height=&quot;177&quot; alt=&quot;Cordón montañoso del Paine&quot;
+                                 class=&quot;alt-cuidado&quot;
+                                 style=&quot;display:block; width:100%; max-width:258px; height:auto; border-radius:4px;&quot; /&gt;
+                          &lt;/a&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding:12px 0 0 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:16px; line-height:22px; font-weight:600; color:#16191F;&quot; class=&quot;texto-principal&quot;&gt;
+                          Torres del Paine
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding:2px 0 0 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;&quot; class=&quot;texto-suave&quot;&gt;
+                          5 días · media pensión&lt;br /&gt;4 salidas entre octubre y diciembre
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding:8px 0 0 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:700; color:#16191F;&quot; class=&quot;texto-principal&quot;&gt;
+                          $289.000
+                          &lt;span style=&quot;font-size:12px; font-weight:400; color:#667085;&quot; class=&quot;texto-suave&quot;&gt;&amp;nbsp;· abono $144.500&lt;/span&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                    &lt;/table&gt;
+                  &lt;/div&gt;
+                  &lt;!--[if mso]&gt;
+                  &lt;/td&gt;&lt;td width=&quot;50%&quot; valign=&quot;top&quot; style=&quot;padding-left:9px;&quot;&gt;
+                  &lt;![endif]--&gt;
+                  &lt;div class=&quot;apila&quot; style=&quot;display:inline-block; width:100%; max-width:258px; vertical-align:top;&quot;&gt;
+                    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
+                      &lt;tr&gt;
+                        &lt;td bgcolor=&quot;#3A4E44&quot; style=&quot;background-color:#3A4E44; border-radius:4px; line-height:0;&quot;&gt;
+                          &lt;a href=&quot;https://ejemplo.cl/chiloe&quot;&gt;
+                            &lt;img src=&quot;https://benjavsqz.github.io/portafolio-email/img/card-chiloe.jpg&quot;
+                                 width=&quot;258&quot; height=&quot;177&quot; alt=&quot;Costa y lomas verdes de Chiloé&quot;
+                                 class=&quot;alt-cuidado&quot;
+                                 style=&quot;display:block; width:100%; max-width:258px; height:auto; border-radius:4px;&quot; /&gt;
+                          &lt;/a&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding:12px 0 0 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:16px; line-height:22px; font-weight:600; color:#16191F;&quot; class=&quot;texto-principal&quot;&gt;
+                          Chiloé profundo
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding:2px 0 0 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;&quot; class=&quot;texto-suave&quot;&gt;
+                          4 días · pensión completa&lt;br /&gt;6 salidas entre noviembre y marzo
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                      &lt;tr&gt;
+                        &lt;td style=&quot;padding:8px 0 0 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:700; color:#16191F;&quot; class=&quot;texto-principal&quot;&gt;
+                          $198.000
+                          &lt;span style=&quot;font-size:12px; font-weight:400; color:#667085;&quot; class=&quot;texto-suave&quot;&gt;&amp;nbsp;· abono $99.000&lt;/span&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                    &lt;/table&gt;
+                  &lt;/div&gt;
+                  &lt;!--[if mso]&gt;
+                  &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+                  &lt;![endif]--&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;!-- Ficha ancha con cinta de estado --&gt;
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:26px 32px 0 32px;&quot;&gt;
+                  &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot; class=&quot;borde&quot; style=&quot;border:1px solid #E1E4E8; border-radius:4px;&quot;&gt;
+                    &lt;tr&gt;
+                      &lt;td bgcolor=&quot;#B3322A&quot; class=&quot;cinta-movil&quot; style=&quot;background-color:#B3322A; padding:7px 14px; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#FFFFFF; border-radius:4px 4px 0 0;&quot;&gt;
+                        Últimos 3 cupos · salida 12 de enero
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                      &lt;td bgcolor=&quot;#3A5E64&quot; style=&quot;background-color:#3A5E64; line-height:0;&quot;&gt;
+                        &lt;a href=&quot;https://ejemplo.cl/austral&quot;&gt;
+                          &lt;img src=&quot;https://benjavsqz.github.io/portafolio-email/img/card-austral.jpg&quot;
+                               width=&quot;534&quot; height=&quot;200&quot; alt=&quot;Fiordo turquesa en la Carretera Austral&quot;
+                               class=&quot;alt-cuidado&quot;
+                               style=&quot;display:block; width:100%; max-width:534px; height:auto;&quot; /&gt;
+                        &lt;/a&gt;
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                      &lt;td class=&quot;fondo-tarjeta&quot; style=&quot;background-color:#FFFFFF; padding:16px 18px 18px 18px; border-radius:0 0 4px 4px;&quot;&gt;
+                        &lt;p class=&quot;texto-principal&quot; style=&quot;margin:0 0 3px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:17px; line-height:23px; font-weight:600; color:#16191F;&quot;&gt;
+                          Carretera Austral · 7 días
+                        &lt;/p&gt;
+                        &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0 0 12px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;&quot;&gt;
+                          De Coyhaique a Villa O&#x27;Higgins, con navegación en el lago General Carrera.
+                        &lt;/p&gt;
+                        &lt;p class=&quot;texto-principal&quot; style=&quot;margin:0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:16px; line-height:22px; font-weight:700; color:#16191F;&quot;&gt;
+                          $410.000
+                          &lt;span style=&quot;font-size:12px; font-weight:400; color:#667085;&quot; class=&quot;texto-suave&quot;&gt;&amp;nbsp;· abono $205.000&lt;/span&gt;
+                        &lt;/p&gt;
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                  &lt;/table&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; align=&quot;center&quot; style=&quot;padding:28px 32px 8px 32px;&quot;&gt;
+                  &lt;!--[if mso]&gt;
+                  &lt;v:roundrect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w=&quot;urn:schemas-microsoft-com:office:word&quot; href=&quot;https://ejemplo.cl/temporada&quot; style=&quot;height:46px;v-text-anchor:middle;width:240px;&quot; arcsize=&quot;9%&quot; stroke=&quot;f&quot; fillcolor=&quot;#24408F&quot;&gt;
+                    &lt;w:anchorlock/&gt;
+                    &lt;center style=&quot;color:#FFFFFF;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;&quot;&gt;Ver el calendario&lt;/center&gt;
+                  &lt;/v:roundrect&gt;
+                  &lt;![endif]--&gt;
+                  &lt;!--[if !mso]&gt;&lt;!-- --&gt;
+                  &lt;a href=&quot;https://ejemplo.cl/temporada&quot;
+                     style=&quot;background-color:#24408F; border-radius:4px; color:#FFFFFF; display:inline-block; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:46px; text-align:center; text-decoration:none; width:240px; -webkit-text-size-adjust:none;&quot;&gt;
+                    Ver el calendario
+                  &lt;/a&gt;
+                  &lt;!--&lt;![endif]--&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+              &lt;tr&gt;
+                &lt;td class=&quot;pad-lateral&quot; align=&quot;center&quot; style=&quot;padding:14px 32px 32px 32px;&quot;&gt;
+                  &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;&quot;&gt;
+                    ¿Buscas una fecha que no está en la lista? Responde este correo y la revisamos.
+                  &lt;/p&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+
+            &lt;/table&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td class=&quot;pad-lateral&quot; style=&quot;padding:24px 32px 8px 32px;&quot;&gt;
+            &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0 0 6px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;&quot;&gt;
+              Rutas del Sur SpA &amp;middot; Av. Ejemplo 1234, Santiago, Chile
+            &lt;/p&gt;
+            &lt;p class=&quot;texto-suave&quot; style=&quot;margin:0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;&quot;&gt;
+              &lt;a href=&quot;https://ejemplo.cl/baja&quot; style=&quot;color:#667085; text-decoration:underline;&quot;&gt;Darse de baja&lt;/a&gt; &amp;middot;
+              &lt;a href=&quot;https://ejemplo.cl/preferencias&quot; style=&quot;color:#667085; text-decoration:underline;&quot;&gt;Preferencias de correo&lt;/a&gt;
+            &lt;/p&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+
+      &lt;/table&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </details>
+  </section>
+
   <!-- ============ Matriz ============ -->
   <section class="specimen">
     <div class="specimen-cab">
@@ -1110,7 +1753,7 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
 
   <div class="cierre">
     <p>
-      Las tres plantillas son HTML plano, sin dependencias ni compilador: se abren, se editan y se cargan
+      Las cinco plantillas son HTML plano, sin dependencias ni compilador: se abren, se editan y se cargan
       en cualquier plataforma de envío. La marca <em>Rutas del Sur</em> es ficticia y existe sólo para dar
       contenido real a la muestra.
     </p>
@@ -1744,6 +2387,513 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
 </body>
 </html>
 </script>
+<script type="text/plain" id="src-4"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="color-scheme" content="light dark" />
+<meta name="supported-color-schemes" content="light dark" />
+<title>Temporada Patagonia · cupos abiertos</title>
+<!--[if mso]>
+<noscript>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+</noscript>
+<![endif]-->
+<style type="text/css">
+  body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  img { -ms-interpolation-mode:bicubic; border:0; height:auto; line-height:100%; outline:none; text-decoration:none; display:block; }
+  table { border-collapse:collapse !important; }
+  body { height:100% !important; margin:0 !important; padding:0 !important; width:100% !important; }
+  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; font-size:inherit !important; font-family:inherit !important; font-weight:inherit !important; line-height:inherit !important; }
+
+  /* Texto alternativo con estilo: si la imagen no carga, el alt se ve deliberado
+     y no como texto azul sin formato de 12px. */
+  img.alt-cuidado { color:#FFFFFF; font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:20px; text-align:center; }
+
+  @media screen and (max-width:600px) {
+    .contenedor { width:100% !important; }
+    .pad-lateral { padding-left:20px !important; padding-right:20px !important; }
+    .hero-alto { height:auto !important; }
+    .hero-pad { padding:32px 20px !important; }
+    .h1-movil { font-size:27px !important; line-height:33px !important; }
+    .apila { display:block !important; width:100% !important; max-width:100% !important; }
+    .col-pad { padding-bottom:18px !important; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .fondo-pagina { background-color:#14161A !important; }
+    .fondo-tarjeta { background-color:#1C1F25 !important; }
+    .texto-principal { color:#E6E8EB !important; }
+    .texto-suave { color:#A8AEB8 !important; }
+    .borde { border-color:#2C313A !important; }
+    .logo-texto { color:#E6E8EB !important; }
+  }
+  [data-ogsc] .fondo-pagina { background-color:#14161A !important; }
+  [data-ogsc] .fondo-tarjeta { background-color:#1C1F25 !important; }
+  [data-ogsc] .texto-principal { color:#E6E8EB !important; }
+  [data-ogsc] .texto-suave { color:#A8AEB8 !important; }
+  [data-ogsc] .borde { border-color:#2C313A !important; }
+  [data-ogsc] .logo-texto { color:#E6E8EB !important; }
+</style>
+</head>
+
+<body class="fondo-pagina" style="margin:0; padding:0; width:100%; background-color:#F2F3F5;">
+
+<div style="display:none; font-size:1px; color:#F2F3F5; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;">
+  Abrimos las salidas de temporada a la Patagonia. Cupos por fecha, reserva con abono del 50%.
+  &#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;
+</div>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="fondo-pagina" style="background-color:#F2F3F5;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="contenedor" style="width:600px; max-width:600px;">
+
+        <tr>
+          <td class="pad-lateral" style="padding:0 32px 20px 32px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#16191F;">
+            <span class="logo-texto">Rutas del Sur</span>
+          </td>
+        </tr>
+
+        <!-- ============================================================
+             HERO CON IMAGEN DE FONDO "A PRUEBA DE BALAS"
+             Tres capas para el mismo resultado:
+               1. atributo background=  → clientes antiguos
+               2. background-image en style= → clientes modernos
+               3. v:rect + v:fill + v:textbox → Outlook para Windows
+             bgcolor sostiene el contraste si la imagen no carga.
+             ============================================================ -->
+        <tr>
+          <td background="https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg"
+              bgcolor="#1A2340"
+              valign="top"
+              class="hero-alto"
+              style="background-color:#1A2340; background-image:url('https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg'); background-position:center center; background-size:cover; background-repeat:no-repeat; border-radius:6px 6px 0 0;">
+
+            <!--[if gte mso 9]>
+            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:320px;">
+              <v:fill type="frame" src="https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg" color="#1A2340" />
+              <v:textbox inset="0,0,0,0">
+            <![endif]-->
+
+            <div>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td class="hero-pad" height="320" valign="top" style="height:320px; padding:40px 36px;">
+                    <p style="margin:0 0 10px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#C7CFE2;">
+                      Temporada 2026 &middot; Cupos abiertos
+                    </p>
+                    <h1 class="h1-movil" style="margin:0 0 20px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:34px; line-height:40px; font-weight:700; color:#FFFFFF; max-width:380px;">
+                      El sur, con las fechas ya cerradas
+                    </h1>
+
+                    <!--[if mso]>
+                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://ejemplo.cl/temporada" style="height:46px;v-text-anchor:middle;width:218px;" arcsize="9%" stroke="f" fillcolor="#FFFFFF">
+                      <w:anchorlock/>
+                      <center style="color:#16191F;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;">Ver las salidas</center>
+                    </v:roundrect>
+                    <![endif]-->
+                    <!--[if !mso]><!-- -->
+                    <a href="https://ejemplo.cl/temporada"
+                       style="background-color:#FFFFFF; border-radius:4px; color:#16191F; display:inline-block; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:46px; text-align:center; text-decoration:none; width:218px; -webkit-text-size-adjust:none;">
+                      Ver las salidas
+                    </a>
+                    <!--<![endif]-->
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <!--[if gte mso 9]>
+              </v:textbox>
+            </v:rect>
+            <![endif]-->
+          </td>
+        </tr>
+
+        <!-- Cuerpo -->
+        <tr>
+          <td class="fondo-tarjeta borde" style="background-color:#FFFFFF; border:1px solid #E1E4E8; border-top:0; border-radius:0 0 6px 6px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+
+              <tr>
+                <td class="pad-lateral" style="padding:32px 32px 8px 32px;">
+                  <p class="texto-suave" style="margin:0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#4A5158;">
+                    Cerramos el calendario de octubre a marzo: fechas fijas, grupos de doce personas como máximo y
+                    reserva con abono del 50%. Estas son las tres rutas que abrimos este año.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Dos columnas con imagen, se apilan en móvil -->
+              <tr>
+                <td class="pad-lateral" style="padding:24px 32px 8px 32px;" align="center">
+                  <!--[if mso]>
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                  <td width="50%" valign="top" style="padding-right:8px;">
+                  <![endif]-->
+                  <div class="apila col-pad" style="display:inline-block; width:100%; max-width:260px; vertical-align:top;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td bgcolor="#2C3A5E" style="background-color:#2C3A5E; border-radius:4px; line-height:0;">
+                          <a href="https://ejemplo.cl/paine">
+                            <img src="https://benjavsqz.github.io/portafolio-email/img/card-paine.jpg"
+                                 width="260" height="179" alt="Cordón montañoso del Paine al amanecer"
+                                 class="alt-cuidado"
+                                 style="display:block; width:100%; max-width:260px; height:auto; border-radius:4px;" />
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding-top:12px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:600; color:#16191F;" class="texto-principal">
+                          Torres del Paine · 5 días
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding-top:3px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;" class="texto-suave">
+                          Desde $289.000 · 4 salidas
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                  </td><td width="50%" valign="top" style="padding-left:8px;">
+                  <![endif]-->
+                  <div class="apila" style="display:inline-block; width:100%; max-width:260px; vertical-align:top;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td bgcolor="#3A4E44" style="background-color:#3A4E44; border-radius:4px; line-height:0;">
+                          <a href="https://ejemplo.cl/austral">
+                            <img src="https://benjavsqz.github.io/portafolio-email/img/card-austral.jpg"
+                                 width="260" height="179" alt="Fiordo turquesa en la Carretera Austral"
+                                 class="alt-cuidado"
+                                 style="display:block; width:100%; max-width:260px; height:auto; border-radius:4px;" />
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding-top:12px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:600; color:#16191F;" class="texto-principal">
+                          Carretera Austral · 7 días
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding-top:3px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;" class="texto-suave">
+                          Desde $410.000 · 3 salidas
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                  </td></tr></table>
+                  <![endif]-->
+                </td>
+              </tr>
+
+              <tr>
+                <td class="pad-lateral" style="padding:20px 32px 32px 32px;">
+                  <p class="texto-suave" style="margin:0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;">
+                    Los cupos se liberan por orden de reserva.
+                    <a href="https://ejemplo.cl/temporada" style="color:#24408F; text-decoration:underline;">Ver el calendario completo</a>
+                  </p>
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pad-lateral" style="padding:24px 32px 8px 32px;">
+            <p class="texto-suave" style="margin:0 0 6px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;">
+              Rutas del Sur SpA &middot; Av. Ejemplo 1234, Santiago, Chile
+            </p>
+            <p class="texto-suave" style="margin:0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;">
+              <a href="https://ejemplo.cl/baja" style="color:#667085; text-decoration:underline;">Darse de baja</a> &middot;
+              <a href="https://ejemplo.cl/preferencias" style="color:#667085; text-decoration:underline;">Preferencias de correo</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+</script>
+<script type="text/plain" id="src-5"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="color-scheme" content="light dark" />
+<meta name="supported-color-schemes" content="light dark" />
+<title>Catálogo de salidas · Rutas del Sur</title>
+<!--[if mso]>
+<noscript>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+</noscript>
+<![endif]-->
+<style type="text/css">
+  body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  img { -ms-interpolation-mode:bicubic; border:0; height:auto; line-height:100%; outline:none; text-decoration:none; display:block; }
+  table { border-collapse:collapse !important; }
+  body { height:100% !important; margin:0 !important; padding:0 !important; width:100% !important; }
+  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; font-size:inherit !important; font-family:inherit !important; font-weight:inherit !important; line-height:inherit !important; }
+
+  img.alt-cuidado { color:#FFFFFF; font-family:Helvetica, Arial, sans-serif; font-size:13px; line-height:19px; text-align:center; }
+
+  @media screen and (max-width:600px) {
+    .contenedor { width:100% !important; }
+    .pad-lateral { padding-left:20px !important; padding-right:20px !important; }
+    .apila { display:block !important; width:100% !important; max-width:100% !important; }
+    .col-pad { padding-bottom:22px !important; }
+    .h1-movil { font-size:25px !important; line-height:31px !important; }
+    .cinta-movil { font-size:11px !important; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .fondo-pagina { background-color:#14161A !important; }
+    .fondo-tarjeta { background-color:#1C1F25 !important; }
+    .texto-principal { color:#E6E8EB !important; }
+    .texto-suave { color:#A8AEB8 !important; }
+    .borde { border-color:#2C313A !important; }
+    .logo-texto { color:#E6E8EB !important; }
+  }
+  [data-ogsc] .fondo-pagina { background-color:#14161A !important; }
+  [data-ogsc] .fondo-tarjeta { background-color:#1C1F25 !important; }
+  [data-ogsc] .texto-principal { color:#E6E8EB !important; }
+  [data-ogsc] .texto-suave { color:#A8AEB8 !important; }
+  [data-ogsc] .borde { border-color:#2C313A !important; }
+  [data-ogsc] .logo-texto { color:#E6E8EB !important; }
+</style>
+</head>
+
+<body class="fondo-pagina" style="margin:0; padding:0; width:100%; background-color:#F2F3F5;">
+
+<div style="display:none; font-size:1px; color:#F2F3F5; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;">
+  Tres rutas, doce salidas y los precios de temporada. Reserva con el 50% y paga el saldo 10 días antes.
+  &#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;&#8203;
+</div>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="fondo-pagina" style="background-color:#F2F3F5;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="contenedor" style="width:600px; max-width:600px;">
+
+        <tr>
+          <td class="pad-lateral" style="padding:0 32px 20px 32px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#16191F;">
+            <span class="logo-texto">Rutas del Sur</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="fondo-tarjeta borde" style="background-color:#FFFFFF; border:1px solid #E1E4E8; border-radius:6px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+
+              <!-- Imagen de portada a ancho completo. La celda lleva bgcolor:
+                   con la imagen bloqueada queda un bloque de color, no un hueco blanco. -->
+              <tr>
+                <td bgcolor="#1A2340" style="background-color:#1A2340; line-height:0; border-radius:6px 6px 0 0;">
+                  <a href="https://ejemplo.cl/temporada">
+                    <img src="https://benjavsqz.github.io/portafolio-email/img/hero-patagonia.jpg"
+                         width="600" height="320" alt="Atardecer sobre la cordillera patagónica"
+                         class="alt-cuidado"
+                         style="display:block; width:100%; max-width:600px; height:auto; border-radius:6px 6px 0 0;" />
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="pad-lateral" style="padding:32px 32px 4px 32px;">
+                  <p class="texto-suave" style="margin:0 0 10px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#667085;">
+                    Catálogo de temporada
+                  </p>
+                  <h1 class="texto-principal h1-movil" style="margin:0 0 12px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:28px; line-height:34px; font-weight:700; color:#16191F;">
+                    Doce salidas, tres rutas, cupos contados
+                  </h1>
+                  <p class="texto-suave" style="margin:0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; line-height:24px; color:#4A5158;">
+                    Grupos de doce personas como máximo. Reservas con abono del 50% y saldo hasta diez días antes de la salida.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Ficha destacada: imagen a un lado, datos al otro. Se apila en móvil. -->
+              <tr>
+                <td class="pad-lateral" style="padding:26px 32px 0 32px;" align="center">
+                  <!--[if mso]>
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                  <td width="50%" valign="top" style="padding-right:9px;">
+                  <![endif]-->
+                  <div class="apila col-pad" style="display:inline-block; width:100%; max-width:258px; vertical-align:top;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td bgcolor="#2C3A5E" style="background-color:#2C3A5E; border-radius:4px; line-height:0;">
+                          <a href="https://ejemplo.cl/paine">
+                            <img src="https://benjavsqz.github.io/portafolio-email/img/card-paine.jpg"
+                                 width="258" height="177" alt="Cordón montañoso del Paine"
+                                 class="alt-cuidado"
+                                 style="display:block; width:100%; max-width:258px; height:auto; border-radius:4px;" />
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:12px 0 0 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:16px; line-height:22px; font-weight:600; color:#16191F;" class="texto-principal">
+                          Torres del Paine
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:2px 0 0 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;" class="texto-suave">
+                          5 días · media pensión<br />4 salidas entre octubre y diciembre
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0 0 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:700; color:#16191F;" class="texto-principal">
+                          $289.000
+                          <span style="font-size:12px; font-weight:400; color:#667085;" class="texto-suave">&nbsp;· abono $144.500</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                  </td><td width="50%" valign="top" style="padding-left:9px;">
+                  <![endif]-->
+                  <div class="apila" style="display:inline-block; width:100%; max-width:258px; vertical-align:top;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td bgcolor="#3A4E44" style="background-color:#3A4E44; border-radius:4px; line-height:0;">
+                          <a href="https://ejemplo.cl/chiloe">
+                            <img src="https://benjavsqz.github.io/portafolio-email/img/card-chiloe.jpg"
+                                 width="258" height="177" alt="Costa y lomas verdes de Chiloé"
+                                 class="alt-cuidado"
+                                 style="display:block; width:100%; max-width:258px; height:auto; border-radius:4px;" />
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:12px 0 0 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:16px; line-height:22px; font-weight:600; color:#16191F;" class="texto-principal">
+                          Chiloé profundo
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:2px 0 0 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;" class="texto-suave">
+                          4 días · pensión completa<br />6 salidas entre noviembre y marzo
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0 0 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; line-height:21px; font-weight:700; color:#16191F;" class="texto-principal">
+                          $198.000
+                          <span style="font-size:12px; font-weight:400; color:#667085;" class="texto-suave">&nbsp;· abono $99.000</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso]>
+                  </td></tr></table>
+                  <![endif]-->
+                </td>
+              </tr>
+
+              <!-- Ficha ancha con cinta de estado -->
+              <tr>
+                <td class="pad-lateral" style="padding:26px 32px 0 32px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="borde" style="border:1px solid #E1E4E8; border-radius:4px;">
+                    <tr>
+                      <td bgcolor="#B3322A" class="cinta-movil" style="background-color:#B3322A; padding:7px 14px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#FFFFFF; border-radius:4px 4px 0 0;">
+                        Últimos 3 cupos · salida 12 de enero
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#3A5E64" style="background-color:#3A5E64; line-height:0;">
+                        <a href="https://ejemplo.cl/austral">
+                          <img src="https://benjavsqz.github.io/portafolio-email/img/card-austral.jpg"
+                               width="534" height="200" alt="Fiordo turquesa en la Carretera Austral"
+                               class="alt-cuidado"
+                               style="display:block; width:100%; max-width:534px; height:auto;" />
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="fondo-tarjeta" style="background-color:#FFFFFF; padding:16px 18px 18px 18px; border-radius:0 0 4px 4px;">
+                        <p class="texto-principal" style="margin:0 0 3px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:17px; line-height:23px; font-weight:600; color:#16191F;">
+                          Carretera Austral · 7 días
+                        </p>
+                        <p class="texto-suave" style="margin:0 0 12px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;">
+                          De Coyhaique a Villa O'Higgins, con navegación en el lago General Carrera.
+                        </p>
+                        <p class="texto-principal" style="margin:0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:16px; line-height:22px; font-weight:700; color:#16191F;">
+                          $410.000
+                          <span style="font-size:12px; font-weight:400; color:#667085;" class="texto-suave">&nbsp;· abono $205.000</span>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="pad-lateral" align="center" style="padding:28px 32px 8px 32px;">
+                  <!--[if mso]>
+                  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://ejemplo.cl/temporada" style="height:46px;v-text-anchor:middle;width:240px;" arcsize="9%" stroke="f" fillcolor="#24408F">
+                    <w:anchorlock/>
+                    <center style="color:#FFFFFF;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;">Ver el calendario</center>
+                  </v:roundrect>
+                  <![endif]-->
+                  <!--[if !mso]><!-- -->
+                  <a href="https://ejemplo.cl/temporada"
+                     style="background-color:#24408F; border-radius:4px; color:#FFFFFF; display:inline-block; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:46px; text-align:center; text-decoration:none; width:240px; -webkit-text-size-adjust:none;">
+                    Ver el calendario
+                  </a>
+                  <!--<![endif]-->
+                </td>
+              </tr>
+
+              <tr>
+                <td class="pad-lateral" align="center" style="padding:14px 32px 32px 32px;">
+                  <p class="texto-suave" style="margin:0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; line-height:20px; color:#667085;">
+                    ¿Buscas una fecha que no está en la lista? Responde este correo y la revisamos.
+                  </p>
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pad-lateral" style="padding:24px 32px 8px 32px;">
+            <p class="texto-suave" style="margin:0 0 6px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;">
+              Rutas del Sur SpA &middot; Av. Ejemplo 1234, Santiago, Chile
+            </p>
+            <p class="texto-suave" style="margin:0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; line-height:18px; color:#667085;">
+              <a href="https://ejemplo.cl/baja" style="color:#667085; text-decoration:underline;">Darse de baja</a> &middot;
+              <a href="https://ejemplo.cl/preferencias" style="color:#667085; text-decoration:underline;">Preferencias de correo</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+</script>
 
 <script>
 (function(){
@@ -1760,7 +2910,7 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
     });
     marco.srcdoc = fuente.textContent;
   }
-  montar(1); montar(2); montar(3);
+  montar(1); montar(2); montar(3); montar(4); montar(5);
 
   // Escritorio / móvil
   document.querySelectorAll('.tabs').forEach(function(grupo){
