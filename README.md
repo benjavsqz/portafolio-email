@@ -11,6 +11,7 @@ y una matriz de soporte por cliente de correo.
 |---|---|---|
 | [`01-confirmacion-reserva.html`](01-confirmacion-reserva.html) | Transaccional | Confirmación de pedido con abono parcial del 50% y saldo pendiente |
 | [`02-carrito-abandonado.html`](02-carrito-abandonado.html) | Ciclo de vida | Recuperación de carrito con contenido personalizable y salida alternativa |
+| [`02-carrito-abandonado-ajo.html`](02-carrito-abandonado-ajo.html) | Ciclo de vida · AJO | La misma pieza lista para Adobe Journey Optimizer: nombre con valor de respaldo, un bloque por ítem del evento del journey y contenido alternativo si el carrito llega vacío |
 | [`03-campana-promocional.html`](03-campana-promocional.html) | Campaña | Tres columnas que se apilan sin depender de media queries, con hero oscuro |
 | [`04-hero-imagen-fondo.html`](04-hero-imagen-fondo.html) | Pieza visual | Imagen de fondo con texto encima, resuelta con VML para Outlook y color de respaldo |
 | [`05-catalogo-visual.html`](05-catalogo-visual.html) | Pieza visual | Portada, fichas de producto con foto y cinta de estado, con respaldo para imágenes bloqueadas |

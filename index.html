@@ -558,6 +558,13 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
             tiene un valor por defecto legible, porque un token vacío en producción imprime un correo roto.</span>
           </li>
           <li>
+            <b>Versión lista para Adobe Journey Optimizer</b>
+            <span>La <a href="02-carrito-abandonado-ajo.html">misma pieza con personalización real</a>: el nombre con
+            valor de respaldo (<code>{%= profile.person.name.firstName ?: "Hola" %}</code>), un bloque por cada ítem
+            del evento del journey (<code>{{#each context.journey.events…productListItems}}</code>) y un
+            <code>{{else}}</code> para que un carrito vacío no deje un hueco en el correo.</span>
+          </li>
+          <li>
             <b>Una salida alternativa</b>
             <span>Bajo el botón principal hay un enlace a otras fechas. Quien abandonó el carrito muchas veces no
             desistió de comprar, sino de <em>esa</em> opción: un solo camino de vuelta desperdicia la apertura.</span>
@@ -1071,9 +1078,18 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
             clientes la altura la da el contenido, y en móvil la media query la libera para que el texto no se corte.</span>
           </li>
           <li>
-            <b>Botón blanco sobre foto</b>
+            <b>Botón blanco sobre foto, hecho con tabla</b>
             <span>Sobre una imagen no se puede confiar en el contraste de un botón de color: el relleno blanco
-            sólido funciona sobre cualquier zona de la foto, y también sobre el color de respaldo.</span>
+            sólido funciona sobre cualquier zona de la foto, y también sobre el color de respaldo. Es una celda con
+            <code>bgcolor</code> y no un <code>v:roundrect</code>, porque aquí ya estamos dentro de un
+            <code>v:textbox</code> y Outlook no admite VML anidado.</span>
+          </li>
+          <li>
+            <b>QA en Outlook de escritorio con tema oscuro</b>
+            <span>La primera versión falló en la prueba: el modo oscuro de Outlook no ve la imagen VML, invertía el
+            titular blanco a oscuro y lo dejaba ilegible sobre la foto, y el botón VML anidado perdía el relleno. La
+            corrección fue un panel de color sólido detrás del texto, sólo para Outlook: con un <code>bgcolor</code>
+            explícito invierte panel y texto juntos y el contraste se sostiene. El resto de las bandejas no lo ve.</span>
           </li>
           <li>
             <b>Imágenes al doble de resolución</b>
@@ -1186,6 +1202,14 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
               &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;100%&quot;&gt;
                 &lt;tr&gt;
                   &lt;td class=&quot;hero-pad&quot; height=&quot;320&quot; valign=&quot;top&quot; style=&quot;height:320px; padding:40px 36px;&quot;&gt;
+                    &lt;!-- Solo Outlook: panel de color sólido detrás del texto. Su modo oscuro no ve la imagen
+                         VML: invertía el texto blanco a oscuro y lo dejaba ilegible sobre la foto oscura.
+                         Con un bgcolor explícito invierte panel y texto JUNTOS y el contraste se sostiene.
+                         Probado en Outlook de escritorio (Microsoft 365) con tema oscuro. --&gt;
+                    &lt;!--[if mso]&gt;
+                    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;400&quot; align=&quot;left&quot;&gt;&lt;tr&gt;
+                    &lt;td bgcolor=&quot;#1A2340&quot; style=&quot;background-color:#1A2340; padding:22px 24px;&quot;&gt;
+                    &lt;![endif]--&gt;
                     &lt;p style=&quot;margin:0 0 10px 0; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#C7CFE2;&quot;&gt;
                       Temporada 2026 &amp;middot; Cupos abiertos
                     &lt;/p&gt;
@@ -1193,18 +1217,22 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
                       El sur, con las fechas ya cerradas
                     &lt;/h1&gt;
 
+                    &lt;!-- Botón de tabla, no VML: esto ya vive dentro de un v:textbox y Outlook no admite
+                         VML anidado (el v:roundrect perdía el fondo). El padding va en la celda porque
+                         Outlook lo ignora en el &lt;a&gt;. --&gt;
+                    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;
+                      &lt;tr&gt;
+                        &lt;td bgcolor=&quot;#FFFFFF&quot; align=&quot;center&quot; style=&quot;background-color:#FFFFFF; border-radius:4px; padding:13px 40px;&quot;&gt;
+                          &lt;a href=&quot;https://ejemplo.cl/temporada&quot;
+                             style=&quot;color:#16191F; display:inline-block; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:20px; text-align:center; text-decoration:none; -webkit-text-size-adjust:none;&quot;&gt;
+                            Ver las salidas
+                          &lt;/a&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                    &lt;/table&gt;
                     &lt;!--[if mso]&gt;
-                    &lt;v:roundrect xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w=&quot;urn:schemas-microsoft-com:office:word&quot; href=&quot;https://ejemplo.cl/temporada&quot; style=&quot;height:46px;v-text-anchor:middle;width:218px;&quot; arcsize=&quot;9%&quot; stroke=&quot;f&quot; fillcolor=&quot;#FFFFFF&quot;&gt;
-                      &lt;w:anchorlock/&gt;
-                      &lt;center style=&quot;color:#16191F;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;&quot;&gt;Ver las salidas&lt;/center&gt;
-                    &lt;/v:roundrect&gt;
+                    &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
                     &lt;![endif]--&gt;
-                    &lt;!--[if !mso]&gt;&lt;!-- --&gt;
-                    &lt;a href=&quot;https://ejemplo.cl/temporada&quot;
-                       style=&quot;background-color:#FFFFFF; border-radius:4px; color:#16191F; display:inline-block; font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:46px; text-align:center; text-decoration:none; width:218px; -webkit-text-size-adjust:none;&quot;&gt;
-                      Ver las salidas
-                    &lt;/a&gt;
-                    &lt;!--&lt;![endif]--&gt;
                   &lt;/td&gt;
                 &lt;/tr&gt;
               &lt;/table&gt;
@@ -2487,6 +2515,14 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                   <td class="hero-pad" height="320" valign="top" style="height:320px; padding:40px 36px;">
+                    <!-- Solo Outlook: panel de color sólido detrás del texto. Su modo oscuro no ve la imagen
+                         VML: invertía el texto blanco a oscuro y lo dejaba ilegible sobre la foto oscura.
+                         Con un bgcolor explícito invierte panel y texto JUNTOS y el contraste se sostiene.
+                         Probado en Outlook de escritorio (Microsoft 365) con tema oscuro. -->
+                    <!--[if mso]>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="400" align="left"><tr>
+                    <td bgcolor="#1A2340" style="background-color:#1A2340; padding:22px 24px;">
+                    <![endif]-->
                     <p style="margin:0 0 10px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#C7CFE2;">
                       Temporada 2026 &middot; Cupos abiertos
                     </p>
@@ -2494,18 +2530,22 @@ table.matriz tr:last-child th, table.matriz tr:last-child td{border-bottom:0;}
                       El sur, con las fechas ya cerradas
                     </h1>
 
+                    <!-- Botón de tabla, no VML: esto ya vive dentro de un v:textbox y Outlook no admite
+                         VML anidado (el v:roundrect perdía el fondo). El padding va en la celda porque
+                         Outlook lo ignora en el <a>. -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td bgcolor="#FFFFFF" align="center" style="background-color:#FFFFFF; border-radius:4px; padding:13px 40px;">
+                          <a href="https://ejemplo.cl/temporada"
+                             style="color:#16191F; display:inline-block; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:20px; text-align:center; text-decoration:none; -webkit-text-size-adjust:none;">
+                            Ver las salidas
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
                     <!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://ejemplo.cl/temporada" style="height:46px;v-text-anchor:middle;width:218px;" arcsize="9%" stroke="f" fillcolor="#FFFFFF">
-                      <w:anchorlock/>
-                      <center style="color:#16191F;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;">Ver las salidas</center>
-                    </v:roundrect>
+                    </td></tr></table>
                     <![endif]-->
-                    <!--[if !mso]><!-- -->
-                    <a href="https://ejemplo.cl/temporada"
-                       style="background-color:#FFFFFF; border-radius:4px; color:#16191F; display:inline-block; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:46px; text-align:center; text-decoration:none; width:218px; -webkit-text-size-adjust:none;">
-                      Ver las salidas
-                    </a>
-                    <!--<![endif]-->
                   </td>
                 </tr>
               </table>

@@ -98,6 +98,14 @@
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                   <td class="hero-pad" height="320" valign="top" style="height:320px; padding:40px 36px;">
+                    <!-- Solo Outlook: panel de color sólido detrás del texto. Su modo oscuro no ve la imagen
+                         VML: invertía el texto blanco a oscuro y lo dejaba ilegible sobre la foto oscura.
+                         Con un bgcolor explícito invierte panel y texto JUNTOS y el contraste se sostiene.
+                         Probado en Outlook de escritorio (Microsoft 365) con tema oscuro. -->
+                    <!--[if mso]>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="400" align="left"><tr>
+                    <td bgcolor="#1A2340" style="background-color:#1A2340; padding:22px 24px;">
+                    <![endif]-->
                     <p style="margin:0 0 10px 0; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#C7CFE2;">
                       Temporada 2026 &middot; Cupos abiertos
                     </p>
@@ -105,18 +113,22 @@
                       El sur, con las fechas ya cerradas
                     </h1>
 
+                    <!-- Botón de tabla, no VML: esto ya vive dentro de un v:textbox y Outlook no admite
+                         VML anidado (el v:roundrect perdía el fondo). El padding va en la celda porque
+                         Outlook lo ignora en el <a>. -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td bgcolor="#FFFFFF" align="center" style="background-color:#FFFFFF; border-radius:4px; padding:13px 40px;">
+                          <a href="https://ejemplo.cl/temporada"
+                             style="color:#16191F; display:inline-block; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:20px; text-align:center; text-decoration:none; -webkit-text-size-adjust:none;">
+                            Ver las salidas
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
                     <!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://ejemplo.cl/temporada" style="height:46px;v-text-anchor:middle;width:218px;" arcsize="9%" stroke="f" fillcolor="#FFFFFF">
-                      <w:anchorlock/>
-                      <center style="color:#16191F;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;">Ver las salidas</center>
-                    </v:roundrect>
+                    </td></tr></table>
                     <![endif]-->
-                    <!--[if !mso]><!-- -->
-                    <a href="https://ejemplo.cl/temporada"
-                       style="background-color:#FFFFFF; border-radius:4px; color:#16191F; display:inline-block; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:15px; font-weight:600; line-height:46px; text-align:center; text-decoration:none; width:218px; -webkit-text-size-adjust:none;">
-                      Ver las salidas
-                    </a>
-                    <!--<![endif]-->
                   </td>
                 </tr>
               </table>
